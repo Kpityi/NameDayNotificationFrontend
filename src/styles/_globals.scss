@@ -1,0 +1,106 @@
+@import './_colors';
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+*,
+*::after,
+*::before {
+  outline: none;
+
+  letter-spacing: 0.03em;
+  line-height: 120%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  box-sizing: border-box;
+  line-height: 120%;
+}
+
+html {
+  overflow: hidden auto;
+}
+
+html,
+body,
+#root {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  font-optical-sizing: auto;
+  font-style: normal;
+  color: $body-color;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  &::-webkit-scrollbar-track {
+    background-color: $color-white;
+  }
+
+  &::-webkit-scrollbar {
+    width: 6px;
+    background-color: $color-grey-light;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $color-grey-light;
+    border-radius: 10px;
+  }
+}
+
+body {
+  background-color: $body-bg;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+ol,
+ul,
+li,
+span,
+blockquote {
+  margin: unset;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  padding: unset;
+  padding-block-start: 0;
+  padding-block-end: 0;
+  padding-inline-start: 0;
+  padding-inline-end: 0;
+  line-height: 120%;
+}
+
+li {
+  list-style-type: none;
+}
+a {
+  color: $primary-color;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+button {
+  background: transparent;
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 100%;
+  text-transform: none;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.1rem;
+}
