@@ -1,0 +1,39 @@
+@import '../../../styles/colors';
+
+.navigation {
+  width: 100vw;
+  background-color: $body-color;
+  color: $body-bg;
+
+  &__links {
+    padding: 0.3rem;
+    display: flex;
+    justify-content: space-between;
+
+    &-left {
+      display: flex;
+      margin-left: 0.5rem;
+    }
+    &-center {
+      margin-left: 0.5rem;
+    }
+    &-right {
+      margin-right: 0.5rem;
+    }
+  }
+
+  &__link {
+    color: $body-bg;
+    margin-right: 0.5rem;
+  }
+
+  &__icon {
+    margin-right: 0.5rem;
+  }
+
+  &__logo {
+    width: 5rem;
+    position: absolute;
+    margin: -1rem 0 0 -1rem;
+  }
+}
