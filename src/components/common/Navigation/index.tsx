@@ -24,9 +24,7 @@ const Navigation = () => {
             </NavLink>
           </li>
         </div>
-        <div className="navigation__links-center">
-          <img src="/logo.png" alt="logo" className="navigation__logo" />
-        </div>
+        <div className="navigation__links-center"></div>
         <div className="navigation__links-right">
           <li>
             <NavLink to={PATHS.login} className={createClassname}>

@@ -7,6 +7,7 @@ import { faAnglesRight, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-ic
 import { useState } from 'react';
 import Button from '../../UI/Button';
 
+//interfaces
 interface initialValues {
   email: string;
   password: string;
@@ -16,7 +17,9 @@ interface validationShema {
   password: string | undefined;
 }
 
+//React
 const LoginPage = () => {
+  //Values
   const [showPassword, setShowPassword] = useState(false);
   const initialValues: initialValues = {
     email: '',
@@ -38,20 +41,26 @@ const LoginPage = () => {
       ),
   });
 
+  //Helpers
   const navigate = useNavigate();
 
+  //functions
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleLogin = () => {
-    console.log('login succes');
+  const handleLogin = (values: initialValues) => {
+    console.log('login succes', values);
   };
+
+  //Page
   return (
     <div className="login-page">
       <div className="login-page__container">
+        {/* Title */}
         <div className="login-page__title">Bejelentkezés</div>
         <div className="login-page__login-form">
+          {/* formik form */}
           <Formik
             enableReinitialize
             initialValues={initialValues}
@@ -61,6 +70,7 @@ const LoginPage = () => {
             {({ values, errors, touched, handleChange, handleSubmit, handleBlur, isSubmitting }) => (
               <div className="login-page__form-container">
                 <Form className="login-page_form" onSubmit={handleSubmit}>
+                  {/* Email */}
                   <div className="login-page__form-group">
                     <label htmlFor="email" className="login-page__form-label">
                       E-mail:
@@ -82,6 +92,8 @@ const LoginPage = () => {
                       />
                     </div>
                   </div>
+
+                  {/* Password */}
                   <div className="login-page__form-group">
                     <label htmlFor="password" className="login-page__form-label">
                       Jelszó:
@@ -98,6 +110,7 @@ const LoginPage = () => {
                       onBlur={handleBlur}
                     />
 
+                    {/* Password eye icon */}
                     <FontAwesomeIcon
                       onClick={handleShowPassword}
                       icon={!showPassword ? faEye : faEyeSlash}
@@ -110,6 +123,8 @@ const LoginPage = () => {
                       />
                     </div>
                   </div>
+
+                  {/* Button */}
                   <div className="login-page__button-container">
                     <Button
                       label="Belépés"
@@ -122,6 +137,7 @@ const LoginPage = () => {
                   </div>
                 </Form>
 
+                {/* Navigate to sign up page */}
                 <div className="login-page__signup-container">
                   <p
                     onClick={() => {

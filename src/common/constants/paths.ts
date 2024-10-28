@@ -3,8 +3,10 @@ export const PATHS = {
   login: '/login',
   signup: '/signup',
   postcards: '/postcards',
+  confirmation: '/confirmation',
   create: 'create',
   params: {
     userId: ':userId',
+    token: ':token',
   },
 };

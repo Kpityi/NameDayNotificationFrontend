@@ -5,22 +5,23 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import HomePage from './components/pages/HomePage';
 import Header from './components/common/Header';
 import Footer from './components/common/Footer';
-import Navigation from './components/common/Navigation';
 import LoginPage from './components/pages/LoginPage';
 import SignUpPage from './components/pages/RegistrationPage';
 import { PATHS } from './common/constants/paths';
+import ConfirmationPage from './components/pages/ConfirmationPage';
 
 function App(): JSX.Element {
   return (
     <Router>
       <Header />
-      <Navigation />
       <main className="main-container">
         <Routes>
           <Route path={PATHS.root} element={<HomePage />} />
           <Route path="/home" element={<Navigate to="/" />} />
           <Route path={PATHS.login} element={<LoginPage />} />
           <Route path={PATHS.signup} element={<SignUpPage />} />
+          <Route path={`${PATHS.confirmation}`} element={<ConfirmationPage />} />
+          <Route path={`${PATHS.confirmation}/${PATHS.params.token}`} element={<ConfirmationPage />} />
         </Routes>
       </main>
       <Footer />
