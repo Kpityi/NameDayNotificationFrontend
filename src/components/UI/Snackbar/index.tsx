@@ -5,16 +5,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck, faCircleXmark } from '@fortawesome/free-regular-svg-icons';
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 
-interface snackbar {
-  message: string;
-  severity: 'success' | 'error' | 'info';
+interface Snackbar {
+  message?: string;
+  severity?: 'success' | 'error' | 'info';
   autoClose?: number;
   visibility: boolean;
   reset: () => void;
-  other?: Record<string, any>;
 }
 
-const Snackbar: React.FC<snackbar> = ({ message, severity, autoClose = 3000, visibility, reset, ...other }) => {
+const Snackbar: React.FC<Snackbar> = ({ message = '', severity = 'info', autoClose = 3000, visibility, reset }) => {
   const icons = {
     success: faCircleCheck,
     error: faCircleXmark,

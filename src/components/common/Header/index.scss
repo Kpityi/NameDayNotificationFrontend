@@ -4,6 +4,7 @@
 .header {
   background-color: $body-color;
   display: flex;
+  width: 100vw;
 
   &__logo {
     border-radius: 10px;

@@ -38,15 +38,13 @@ export const SnackbarProvider: React.FC<{ children: ReactNode }> = ({ children }
   return (
     <SnackbarContext.Provider value={{ showSnackbar, hideSnackbar, snackbar, visibility }}>
       {children}
-      {snackbar && visibility && (
-        <Snackbar
-          message={snackbar.message}
-          severity={snackbar.severity}
-          autoClose={snackbar.autoClose}
-          visibility={visibility}
-          reset={hideSnackbar}
-        />
-      )}
+      <Snackbar
+        message={snackbar?.message}
+        severity={snackbar?.severity}
+        autoClose={snackbar?.autoClose}
+        visibility={visibility && !!snackbar}
+        reset={hideSnackbar}
+      />
     </SnackbarContext.Provider>
   );
 };

@@ -1,4 +1,4 @@
-import { useNavigate, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import classNames from 'classnames';
 import './index.scss';
 import { PATHS } from '../../../common/constants/paths';
