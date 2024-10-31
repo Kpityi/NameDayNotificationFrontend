@@ -74,7 +74,7 @@ const SignUpPage = () => {
       const response = await axios.post(`${API_URL}/auth/signup`, values);
       console.log(response.status);
       if (response.status >= 200 && response.status < 300) {
-        console.log(response.data.message);
+        console.log(response.data.message); //pityi
         showSnackbar({
           message: response.data.message,
           severity: 'success',

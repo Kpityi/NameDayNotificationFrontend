@@ -9,6 +9,7 @@ import LoginPage from './components/pages/LoginPage';
 import SignUpPage from './components/pages/RegistrationPage';
 import { PATHS } from './common/constants/paths';
 import ConfirmationPage from './components/pages/ConfirmationPage';
+import ProfilPage from './components/pages/ProfilPage';
 
 function App(): JSX.Element {
   return (
@@ -20,8 +21,8 @@ function App(): JSX.Element {
           <Route path="/home" element={<Navigate to="/" />} />
           <Route path={PATHS.login} element={<LoginPage />} />
           <Route path={PATHS.signup} element={<SignUpPage />} />
-          <Route path={`${PATHS.confirmation}`} element={<ConfirmationPage />} />
           <Route path={`${PATHS.confirmation}/${PATHS.params.token}`} element={<ConfirmationPage />} />
+          <Route path={`${PATHS.profil}`} element={<ProfilPage />} />
         </Routes>
       </main>
       <Footer />

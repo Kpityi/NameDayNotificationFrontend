@@ -1,11 +1,14 @@
 import './index.scss';
 import * as Yup from 'yup';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, Field, ErrorMessage, FormikHelpers } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAnglesRight, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import Button from '../../UI/Button';
+import axios from 'axios';
+import { API_URL } from '../../../common/constants/environment';
+import { useSnackbar } from '../../../contexts/snackbarContenxt';
 
 //interfaces
 interface initialValues {
@@ -21,6 +24,8 @@ interface validationShema {
 const LoginPage = () => {
   //Values
   const [showPassword, setShowPassword] = useState(false);
+  const { showSnackbar } = useSnackbar();
+
   const initialValues: initialValues = {
     email: '',
     password: '',
@@ -49,8 +54,35 @@ const LoginPage = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleLogin = (values: initialValues) => {
-    console.log('login succes', values);
+  const handleLogin = async (values: initialValues, { setSubmitting, resetForm }: FormikHelpers<initialValues>) => {
+    console.log(values);
+
+    try {
+      const response = await axios.post(`${API_URL}/auth/login`, values);
+      console.log(response);
+      if (response.status >= 200 && response.status < 300) {
+        console.log(response.data);
+        showSnackbar({
+          message: 'sikeres belejelentkezés',
+          severity: 'success',
+          autoClose: 3000,
+        });
+        localStorage.setItem('token', response.data.token);
+        navigate('/profil');
+      }
+    } catch (error) {
+      console.log(error);
+      if (axios.isAxiosError(error)) {
+        showSnackbar({
+          message: error.response?.data.message,
+          severity: 'error',
+          autoClose: 3000,
+        });
+      }
+    } finally {
+      setSubmitting(false);
+      resetForm();
+    }
   };
 
   //Page

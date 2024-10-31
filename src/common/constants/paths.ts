@@ -4,6 +4,7 @@ export const PATHS = {
   signup: '/signup',
   postcards: '/postcards',
   confirmation: '/confirmation',
+  profil: '/profil',
   create: 'create',
   params: {
     userId: ':userId',
