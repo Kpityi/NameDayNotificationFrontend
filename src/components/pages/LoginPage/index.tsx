@@ -4,11 +4,12 @@ import { Formik, Form, Field, ErrorMessage, FormikHelpers } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAnglesRight, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from '../../UI/Button';
 import axios from 'axios';
 import { API_URL } from '../../../common/constants/environment';
 import { useSnackbar } from '../../../contexts/snackbarContenxt';
+import { useUser } from '../../../contexts/UserContenxt';
 
 //interfaces
 interface initialValues {
@@ -25,6 +26,8 @@ const LoginPage = () => {
   //Values
   const [showPassword, setShowPassword] = useState(false);
   const { showSnackbar } = useSnackbar();
+  const { userData } = useUser();
+  console.log('login: ', userData); //pityi
 
   const initialValues: initialValues = {
     email: '',
@@ -48,6 +51,7 @@ const LoginPage = () => {
 
   //Helpers
   const navigate = useNavigate();
+  const { setUser } = useUser();
 
   //functions
   const handleShowPassword = () => {
@@ -58,7 +62,7 @@ const LoginPage = () => {
     console.log(values);
 
     try {
-      const response = await axios.post(`${API_URL}/auth/login`, values);
+      const response = await axios.post(`${API_URL}/auth/login`, values, { withCredentials: true });
       console.log(response);
       if (response.status >= 200 && response.status < 300) {
         console.log(response.data);
@@ -67,7 +71,7 @@ const LoginPage = () => {
           severity: 'success',
           autoClose: 3000,
         });
-        localStorage.setItem('token', response.data.token);
+        setUser(response.data);
         navigate('/profil');
       }
     } catch (error) {
@@ -84,6 +88,12 @@ const LoginPage = () => {
       resetForm();
     }
   };
+
+  useEffect(() => {
+    if (userData) {
+      navigate('/profil');
+    }
+  }, [userData]);
 
   //Page
   return (
