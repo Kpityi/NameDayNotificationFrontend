@@ -27,7 +27,6 @@ const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { showSnackbar } = useSnackbar();
   const { userData } = useUser();
-  console.log('login: ', userData); //pityi
 
   const initialValues: initialValues = {
     email: '',

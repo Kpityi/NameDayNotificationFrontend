@@ -13,12 +13,14 @@ import ConfirmationPage from './components/pages/ConfirmationPage';
 import ProfilPage from './components/pages/ProfilPage';
 import Page404 from './components/pages/Page404';
 import PostcardsPage from './components/pages/PostcardsPage';
+import NameDay from './components/common/Nameday';
 
 function App(): JSX.Element {
   return (
     <UserProvider>
       <Router>
         <Header />
+        <NameDay />
         <main className="main-container">
           <Routes>
             <Route path={PATHS.root} element={<HomePage />} />

@@ -1,30 +1,57 @@
 @import '../../../styles/colors';
+@import '../../../styles/breakpoints';
 
 .navigation {
   width: 100vw;
   background-color: $body-color;
   color: $body-bg;
 
+  @media (max-width: $breakpoint-sm) {
+    width: 150px;
+  }
+
   &__links {
     padding: 0.3rem;
     display: flex;
     justify-content: space-between;
 
-    &-left {
-      display: flex;
-      margin-left: 0.5rem;
+    @media (max-width: $breakpoint-sm) {
+      display: block;
+      background-color: $body-color;
+      text-align: left;
+      padding-left: 2rem;
+      width: 150px;
+      height: 100vh;
+      position: absolute;
+      top: 1;
+      left: -500px;
+      transition: all, ease-in-out, 1.2s;
+
+      &.-show {
+        left: 0;
+      }
     }
-    &-center {
-      margin-left: 0.5rem;
-    }
+
+    &-left,
+    &-center,
     &-right {
+      display: flex;
       margin-right: 0.5rem;
+
+      @media (max-width: $breakpoint-sm) {
+        display: block;
+        margin-top: 1rem;
+      }
     }
   }
 
   &__link {
     color: $body-bg;
-    margin-right: 0.5rem;
+    margin-right: 1rem;
+
+    @media (max-width: $breakpoint-sm) {
+      margin-top: 0.5rem;
+    }
   }
 
   &__icon {
@@ -35,5 +62,44 @@
     width: 5rem;
     position: absolute;
     margin: -1rem 0 0 -1rem;
+  }
+
+  &__link {
+    display: inline-block;
+    position: relative;
+    padding-bottom: 0.2rem;
+    &::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      transform: scaleX(0);
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: $body-bg;
+      transform-origin: bottom right;
+      transition: transform 0.25s ease-out;
+    }
+    &:hover::after {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+    &.-active {
+      text-decoration: underline 2px;
+      text-underline-offset: 0.3rem;
+    }
+  }
+
+  &__hamburger-menu {
+    font-size: 1.5rem;
+
+    position: relative;
+    display: none;
+    cursor: pointer;
+
+    @media (max-width: $breakpoint-sm) {
+      display: inline-block;
+      z-index: 100;
+    }
   }
 }
