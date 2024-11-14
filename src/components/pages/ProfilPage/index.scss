@@ -1,0 +1,14 @@
+.profil-page {
+  &__menu-container {
+    margin: 1rem auto;
+    display: flex;
+    justify-content: space-around;
+    flex-basis: 100%;
+    flex-wrap: wrap;
+  }
+
+  &__menu-item {
+    margin: 1rem;
+    cursor: pointer;
+  }
+}

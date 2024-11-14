@@ -1,0 +1,15 @@
+.menu-card {
+  border: 1px solid rgba(100, 96, 96, 0.4);
+  border-radius: 20px;
+  box-shadow: 3px 3px 8px black;
+  width: 150px;
+  height: 180px;
+
+  &__title {
+    margin: 1rem auto;
+  }
+
+  &__icon {
+    font-size: 4rem;
+  }
+}

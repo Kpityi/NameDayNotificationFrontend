@@ -1,8 +1,18 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
+interface User {
+  first_name: string;
+  last_name: string;
+  email: string;
+  id: number;
+  isValid: number;
+  registration_date: string;
+  role: string;
+}
+
 interface UserContextType {
-  userData: object | null;
-  setUser: (user: object) => void;
+  userData: User | null;
+  setUser: (user: User) => void;
   clearUser: () => void;
 }
 

@@ -6,6 +6,8 @@ export const PATHS = {
   postcards: '/postcards',
   confirmation: '/confirmation',
   profil: '/profil',
+  user: '/user',
+  notifications: '/notifications',
   create: 'create',
   params: {
     userId: ':userId',

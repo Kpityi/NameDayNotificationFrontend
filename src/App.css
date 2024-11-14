@@ -8,5 +8,5 @@
   margin: 0 auto;
   padding-top: 2rem;
   width: 90vw;
-  height: calc(100vh - 100px);
+  min-height: calc(100vh - 180px);
 }

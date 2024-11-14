@@ -1,0 +1,48 @@
+@import '../../../styles/colors';
+@import '../../../styles/breakpoints';
+
+.notifications-page {
+  background-color: rgba(255, 255, 255, 0.5);
+  width: 70%;
+  margin: 0 auto;
+  border-radius: 25px;
+  box-shadow: 5px 5px 10px black;
+  padding: 2rem;
+  text-wrap: wrap;
+  word-wrap: break-word;
+
+  @media (max-width: 580px) {
+    width: 90%;
+  }
+  @media (max-width: 450px) {
+    width: 100%;
+    font-size: 0.7rem;
+    overflow: hidden;
+    overflow: scroll;
+  }
+
+  &__title {
+    margin-bottom: 1.5rem;
+  }
+
+  &__table {
+    margin: 0 auto;
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: 90%;
+  }
+
+  &__table-cell {
+    text-align: left;
+    padding: 0.1rem 0.5rem;
+    border: 1px solid black;
+  }
+
+  &__hr {
+    filter: opacity(40%);
+  }
+
+  &__icon {
+    margin-left: 1rem;
+  }
+}

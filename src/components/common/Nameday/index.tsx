@@ -1,9 +1,10 @@
 import { faCalendarDays } from '@fortawesome/free-regular-svg-icons';
 import './index.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { API_URL } from '../../../common/constants/environment';
+import { nameOfDay, nameOfMonth } from '../../../common/constants/helper';
 
 const NameDay = () => {
   const [names, setNames] = useState<string[]>([]);
@@ -12,29 +13,6 @@ const NameDay = () => {
   let month: number = date.getMonth();
   let day: number = date.getDate();
   let today: number = date.getDay();
-
-  const nameOfMonth: string[] = useMemo(
-    () => [
-      'január',
-      'február',
-      'március',
-      'április',
-      'május',
-      'június',
-      'július',
-      'augusztus',
-      'szeptember',
-      'október',
-      'november',
-      'december',
-    ],
-    []
-  );
-
-  const nameOfDay: string[] = useMemo(
-    () => ['vasárnap', 'hétfő', 'kedd', 'szerda', 'csütörtök', 'péntek', 'szombat'],
-    []
-  );
 
   useEffect(() => {
     const fetchNamedays = async (month: number, day: number) => {

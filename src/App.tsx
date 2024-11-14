@@ -14,6 +14,8 @@ import ProfilPage from './components/pages/ProfilPage';
 import Page404 from './components/pages/Page404';
 import PostcardsPage from './components/pages/PostcardsPage';
 import NameDay from './components/common/Nameday';
+import UserProfilPage from './components/pages/UserProfilPage';
+import UserNotificationsPage from './components/pages/UserNotificationsPage';
 
 function App(): JSX.Element {
   return (
@@ -30,6 +32,8 @@ function App(): JSX.Element {
             <Route path={PATHS.signup} element={<SignUpPage />} />
             <Route path={`${PATHS.confirmation}/${PATHS.params.token}`} element={<ConfirmationPage />} />
             <Route path={PATHS.profil} element={<PrivateRoute element={<ProfilPage />} />} />
+            <Route path={PATHS.user} element={<PrivateRoute element={<UserProfilPage />} />} />
+            <Route path={PATHS.notifications} element={<PrivateRoute element={<UserNotificationsPage />} />} />
             <Route path="*" element={<Page404 />} />
           </Routes>
         </main>

@@ -9,7 +9,7 @@ const Header = () => {
           <img src="/logo.png" alt="logo" className="header__logo" />
         </div>
         <div className="header__title-container">
-          <h1 className="header__title">Nameday Notification</h1>
+          <h1 className="header__title">Name day Notification</h1>
         </div>
       </div>
       <Navigation />

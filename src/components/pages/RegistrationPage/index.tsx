@@ -1,6 +1,6 @@
 import './index.scss';
 import * as Yup from 'yup';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, Field, ErrorMessage, FormikHelpers } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAnglesRight, faEye, faEyeSlash, faCircleInfo } from '@fortawesome/free-solid-svg-icons';
@@ -69,7 +69,7 @@ const SignUpPage = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleSignUp = async (values: initialValues) => {
+  const handleSignUp = async (values: initialValues, { setSubmitting, resetForm }: FormikHelpers<initialValues>) => {
     try {
       const response = await axios.post(`${API_URL}/auth/signup`, values);
       console.log(response.status);
@@ -89,6 +89,9 @@ const SignUpPage = () => {
           autoClose: 3000,
         });
       }
+    } finally {
+      setSubmitting(false);
+      resetForm();
     }
   };
 
