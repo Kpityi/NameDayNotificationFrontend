@@ -1,0 +1,13 @@
+@import '../../../../styles/colors';
+
+.back-icon {
+  display: block;
+  width: 100px;
+  font-size: 1.8rem;
+  background-color: $primary-color;
+  padding: 0.3rem 0.8rem;
+  margin: 0 0 0 -0.8rem;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 3px 3px 8px black;
+}

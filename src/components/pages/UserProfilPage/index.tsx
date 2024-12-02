@@ -1,8 +1,11 @@
 import { useUser } from '../../../contexts/UserContenxt';
 import './index.scss';
 
+import BackButton from '../../UI/Button/Back';
+
 const UserProfilPage = () => {
   const { userData } = useUser();
+
   return (
     <div className="user-page">
       <h2 className="user-page__title">Profil</h2>
@@ -26,6 +29,8 @@ const UserProfilPage = () => {
         <span>Regisztráció: </span>
         <span>{userData?.registration_date?.split('T')[0].replaceAll('-', '.')}.</span>
       </h4>
+      <hr className="user-page__hr" />
+      <BackButton className="user-page" page="profil" />
     </div>
   );
 };

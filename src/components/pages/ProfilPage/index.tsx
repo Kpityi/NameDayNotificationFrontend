@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { faBell, faIdCard, faUsers } from '@fortawesome/free-solid-svg-icons';
+import { faBell, faCalendarPlus, faIdCard, faUserPlus, faUsers } from '@fortawesome/free-solid-svg-icons';
 import { useUser } from '../../../contexts/UserContenxt';
 import './index.scss';
 import { useNavigate } from 'react-router';
@@ -22,8 +22,14 @@ const ProfilPage = () => {
       <div className="profil-page__menu-container">
         <MenuCard label="Profil" icon={faIdCard} className="profil-page__menu-item" page="user" />
         <MenuCard label="Emlékeztetők" icon={faBell} className="profil-page__menu-item" page="notifications" />
-        <MenuCard label="Barátok" icon={faUsers} className="profil-page__menu-item" page="user" />
-        <MenuCard label="Barát hozzáadása" icon={faUsers} className="profil-page__menu-item" page="user" />
+        <MenuCard
+          label="Emlékeztető hozzáadása"
+          icon={faCalendarPlus}
+          className="profil-page__menu-item"
+          page="notifications/create"
+        />
+        {/* <MenuCard label="Barátok" icon={faUsers} className="profil-page__menu-item" page="user" />
+        <MenuCard label="Barát hozzáadása" icon={faUserPlus} className="profil-page__menu-item" page="user" /> */}
       </div>
     </div>
   );

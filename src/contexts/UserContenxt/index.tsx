@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import Cookies from 'js-cookie';
 
 interface User {
   first_name: string;
@@ -19,9 +20,9 @@ interface UserContextType {
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
 export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [userData, setUserData] = useState<object | null>(null);
+  const [userData, setUserData] = useState<User | null>(null);
 
-  const setUser = (user: object) => {
+  const setUser = (user: User) => {
     setUserData(user);
     localStorage.setItem('user', JSON.stringify(user));
   };
@@ -33,8 +34,12 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
-    if (storedUser) {
+    const token = Cookies.get('token');
+    if (storedUser && token) {
       setUserData(JSON.parse(storedUser));
+    } else {
+      clearUser();
+      Cookies.remove('token', { path: '' });
     }
   }, []);
 

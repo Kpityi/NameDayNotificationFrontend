@@ -1,0 +1,61 @@
+@import './../../styles/colors';
+
+.add-name-notification {
+  &__date-group {
+    display: flex;
+    justify-content: center;
+    flex-basis: 1;
+    gap: 1rem;
+  }
+  &__label {
+    margin-bottom: 0.4rem;
+    display: block;
+  }
+
+  &__input-number {
+    width: 60px;
+  }
+
+  &__error-message {
+    color: $color-red;
+    font-size: 0.8rem;
+    &-container {
+      min-height: 2rem;
+    }
+  }
+
+  &__hr {
+    filter: opacity(40%);
+  }
+
+  &__title {
+    margin: 1rem;
+    font-weight: 700;
+  }
+
+  &__names-container {
+    margin: 0 auto;
+    padding: 0.5rem 1rem;
+    width: 50%;
+    border: 1px solid black;
+    background-color: $color-white;
+  }
+
+  &__nameday {
+    cursor: pointer;
+
+    &:hover {
+      background-color: $color-grey-lightest;
+      font-style: italic;
+    }
+  }
+
+  &__name {
+    padding-left: 2rem;
+    text-align: left;
+  }
+
+  &__help {
+    font-size: 0.8rem;
+  }
+}

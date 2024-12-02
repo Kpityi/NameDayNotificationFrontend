@@ -1,7 +1,6 @@
-@import '../../../styles/colors';
-@import '../../../styles/breakpoints';
+@import './../../../styles/colors';
 
-.notifications-page {
+.add-notification-page {
   background-color: rgba(255, 255, 255, 0.5);
   width: 70%;
   margin: 0 auto;
@@ -25,25 +24,25 @@
     margin-bottom: 1.5rem;
   }
 
-  &__table {
-    margin: 0 auto;
-    border: 1px solid black;
-    border-collapse: collapse;
-    width: 90%;
-  }
-
-  &__table-cell {
-    text-align: left;
-    padding: 0.1rem 0.5rem;
-    border: 1px solid black;
+  &__label {
+    margin-right: 1rem;
   }
 
   &__hr {
     filter: opacity(40%);
+    margin-bottom: 1rem;
   }
 
-  &__icon {
-    margin-left: 1rem;
-    cursor: pointer;
+  &__list-item {
+    list-style-type: decimal;
+    text-align: left;
+    margin: 1rem;
+    font-weight: 600;
+  }
+
+  &__list-item-text {
+    margin-top: 0.5rem;
+    text-align: justify;
+    font-weight: 100;
   }
 }

@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 import Snackbar from '../../components/UI/Snackbar';
+
 interface SnackbarOptions {
   message: string;
   severity: 'success' | 'error' | 'info';

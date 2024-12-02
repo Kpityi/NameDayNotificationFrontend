@@ -17,7 +17,7 @@ const NameDay = () => {
   useEffect(() => {
     const fetchNamedays = async (month: number, day: number) => {
       try {
-        const response = await axios.post(`${API_URL}/getnames`, {
+        const response = await axios.post(`${API_URL}/names`, {
           month,
           day,
         });

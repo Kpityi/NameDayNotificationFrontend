@@ -12,11 +12,11 @@ import { useSnackbar } from '../../../contexts/snackbarContenxt';
 import { useUser } from '../../../contexts/UserContenxt';
 
 //interfaces
-interface initialValues {
+interface InitialValues {
   email: string;
   password: string;
 }
-interface validationShema {
+interface ValidationShema {
   email: string | undefined;
   password: string | undefined;
 }
@@ -28,11 +28,11 @@ const LoginPage = () => {
   const { showSnackbar } = useSnackbar();
   const { userData } = useUser();
 
-  const initialValues: initialValues = {
+  const initialValues: InitialValues = {
     email: '',
     password: '',
   };
-  const validationShema: Yup.ObjectSchema<validationShema> = Yup.object({
+  const validationShema: Yup.ObjectSchema<ValidationShema> = Yup.object({
     email: Yup.string()
       .lowercase()
       .trim()
@@ -57,12 +57,12 @@ const LoginPage = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleLogin = async (values: initialValues, { setSubmitting, resetForm }: FormikHelpers<initialValues>) => {
+  const handleLogin = async (values: InitialValues, { setSubmitting, resetForm }: FormikHelpers<InitialValues>) => {
     console.log(values);
 
     try {
       const response = await axios.post(`${API_URL}/auth/login`, values, { withCredentials: true });
-      console.log(response);
+      console.log(response); //pityi
       if (response.status >= 200 && response.status < 300) {
         console.log(response.data);
         showSnackbar({

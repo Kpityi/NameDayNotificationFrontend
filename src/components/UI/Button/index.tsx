@@ -7,6 +7,7 @@ interface ButtonProps {
   disabled?: boolean;
   type?: 'submit' | 'button' | 'reset';
   props?: any;
+  onClick?: () => void;
 }
 
 const Button = ({ label, className, disabled, type, ...props }: ButtonProps) => {
