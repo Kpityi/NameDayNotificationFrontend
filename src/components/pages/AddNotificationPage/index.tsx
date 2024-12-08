@@ -2,9 +2,9 @@ import { useNavigate } from 'react-router';
 import { useUser } from '../../../contexts/UserContenxt';
 import './index.scss';
 import { useState } from 'react';
-import AddNameNotification from '../../AddNameNotification';
-import AddOccasionNotification from '../../AddOccasionNotification';
-import AddCustomNotification from '../../AddCustomNotification';
+import AddNameNotification from '../AddNameNotification';
+import AddOccasionNotification from '../AddOccasionNotification';
+import AddCustomNotification from '../AddCustomNotification';
 import BackButton from '../../UI/Button/Back';
 
 const AddNotificationPage = () => {
@@ -46,8 +46,8 @@ const AddNotificationPage = () => {
                   Névnapi emlékeztető:
                   <p className="add-notification-page__list-item-text">
                     Itt lehetősége van egy adott névnap beállítására. Válassza ki a legördülő listából a névnap
-                    menüpontot, majd töltse ki az adott mezőket vagy a kereső segítségével keresse ki a névnaphoz
-                    tartozó dátumot.
+                    menüpontot, majd a kereső segítségével keresse ki a névnaphoz tartozó dátumot. Amennyiben nem
+                    találja meg az adott névnapot, kérjük jelezze felénk, vagy állítson be egyedi alkalom emlékeztetőt.
                   </p>
                 </li>
                 <li className="add-notification-page__list-item">

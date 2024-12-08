@@ -28,8 +28,8 @@ const ProfilPage = () => {
           className="profil-page__menu-item"
           page="notifications/create"
         />
-        {/* <MenuCard label="Barátok" icon={faUsers} className="profil-page__menu-item" page="user" />
-        <MenuCard label="Barát hozzáadása" icon={faUserPlus} className="profil-page__menu-item" page="user" /> */}
+        <MenuCard label="Barátok" icon={faUsers} className="profil-page__menu-item" page="friends" />
+        <MenuCard label="Barát hozzáadása" icon={faUserPlus} className="profil-page__menu-item" page="friends/create" />
       </div>
     </div>
   );

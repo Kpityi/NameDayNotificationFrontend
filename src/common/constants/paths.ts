@@ -8,6 +8,7 @@ export const PATHS = {
   profil: '/profil',
   user: '/user',
   notifications: '/notifications',
+  friends: '/friends',
   create: 'create',
   params: {
     userId: ':userId',

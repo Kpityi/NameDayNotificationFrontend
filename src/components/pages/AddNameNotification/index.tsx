@@ -2,10 +2,10 @@ import { Formik, Form, Field, ErrorMessage, FormikHelpers } from 'formik';
 import './index.scss';
 import * as Yup from 'yup';
 import { useState } from 'react';
-import Button from '../UI/Button';
+import Button from '../../UI/Button';
 import axios from 'axios';
-import { API_URL } from '../../common/constants/environment';
-import { useSnackbar } from '../../contexts/snackbarContenxt';
+import { API_URL } from '../../../common/constants/environment';
+import { useSnackbar } from '../../../contexts/snackbarContenxt';
 
 //interfaces
 interface InitialValues {
@@ -89,7 +89,7 @@ const AddNameNotification = () => {
           validationSchema={validationShema}
           onSubmit={handleSearch}
         >
-          {({ values, errors, touched, handleChange, handleSubmit, handleBlur, isSubmitting }) => (
+          {({ values, errors, dirty, handleChange, handleSubmit, handleBlur, isSubmitting }) => (
             <div className="add-name-notification__form-container">
               <Form className="add-name-notification__form" onSubmit={handleSubmit}>
                 {/*  Name */}
@@ -120,7 +120,7 @@ const AddNameNotification = () => {
                     label="keresés"
                     type="submit"
                     className="add-name-notification__button"
-                    disabled={isSubmitting || Boolean(Object.keys(errors)?.length)}
+                    disabled={isSubmitting || !!Object.keys(errors)?.length || !dirty}
                   />
                 </div>
               </Form>
@@ -131,30 +131,34 @@ const AddNameNotification = () => {
       <hr className="add-name-notification__hr" />
       <div className="add-name-notification__title">Válassza ki meyik névnaphoz szeretne emlékeztetőt beállítani</div>
       <table className="add-name-notification__names-container">
-        <tr className="add-name-notification__nameday-header">
-          <th className="add-name-notification__date">dátum</th>
-          <th className="add-name-notification__name">Név</th>
-        </tr>
-        {nameDays
-          ? nameDays.map((nameDay) => {
-              if (!nameDay?.month || !nameDay?.day) {
-                return null;
-              }
-              return (
-                <tr
-                  className="add-name-notification__nameday"
-                  key={nameDay.id}
-                  onClick={() => handleAddNameNotification(nameDay)}
-                >
-                  <td className="add-name-notification__date">
-                    {nameDay?.month < 10 ? `0${nameDay.month}` : nameDay.month}.
-                    {nameDay?.day < 10 ? `0${nameDay.day}` : nameDay.day}.
-                  </td>
-                  <td className="add-name-notification__name">{nameDay.name}</td>
-                </tr>
-              );
-            })
-          : null}
+        <thead>
+          <tr className="add-name-notification__nameday-header">
+            <th className="add-name-notification__date">dátum</th>
+            <th className="add-name-notification__name">Név</th>
+          </tr>
+        </thead>
+        <tbody>
+          {nameDays
+            ? nameDays.map((nameDay) => {
+                if (!nameDay?.month || !nameDay?.day) {
+                  return null;
+                }
+                return (
+                  <tr
+                    className="add-name-notification__nameday"
+                    key={nameDay.id}
+                    onClick={() => handleAddNameNotification(nameDay)}
+                  >
+                    <td className="add-name-notification__date">
+                      {nameDay?.month < 10 ? `0${nameDay.month}` : nameDay.month}.
+                      {nameDay?.day < 10 ? `0${nameDay.day}` : nameDay.day}.
+                    </td>
+                    <td className="add-name-notification__name">{nameDay.name}</td>
+                  </tr>
+                );
+              })
+            : null}
+        </tbody>
       </table>
       <div className="add-name-notification__help">
         Amennyiben a fenti listában nem található az ön által keresett névnap, kérem jelezze felénk, vagy készítsen egy

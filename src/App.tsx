@@ -17,6 +17,8 @@ import NameDay from './components/common/Nameday';
 import UserProfilPage from './components/pages/UserProfilPage';
 import UserNotificationsPage from './components/pages/UserNotificationsPage';
 import AddNotificationPage from './components/pages/AddNotificationPage';
+import FriendsPage from './components/pages/FriendsPage';
+import AddFriendsPage from './components/pages/AddFriendPage';
 
 function App(): JSX.Element {
   return (
@@ -39,6 +41,8 @@ function App(): JSX.Element {
               path={`${PATHS.notifications}/${PATHS.create}`}
               element={<PrivateRoute element={<AddNotificationPage />} />}
             />
+            <Route path={`${PATHS.friends}`} element={<PrivateRoute element={<FriendsPage />} />} />
+            <Route path={`${PATHS.friends}/${PATHS.create}`} element={<PrivateRoute element={<AddFriendsPage />} />} />
             <Route path="*" element={<Page404 />} />
           </Routes>
         </main>

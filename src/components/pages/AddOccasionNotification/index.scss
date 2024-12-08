@@ -1,0 +1,35 @@
+@import '../../../styles/colors';
+@import '../../../styles/breakpoints';
+
+.add-occasion-notification {
+  &__date-group {
+    display: flex;
+    justify-content: center;
+    flex-basis: 1;
+    gap: 1rem;
+  }
+  &__label {
+    margin-bottom: 0.4rem;
+    display: block;
+  }
+
+  &__input-number {
+    width: 60px;
+  }
+
+  &__error-message {
+    color: $color-red;
+    font-size: 0.8rem;
+    &-container {
+      min-height: 2rem;
+    }
+  }
+
+  &__hr {
+    filter: opacity(40%);
+  }
+
+  &__button {
+    margin: 1rem;
+  }
+}

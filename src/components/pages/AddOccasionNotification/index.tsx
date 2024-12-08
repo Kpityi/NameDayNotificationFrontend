@@ -1,30 +1,26 @@
-import { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage, FormikHelpers } from 'formik';
 import './index.scss';
 import * as Yup from 'yup';
-import Button from '../UI/Button';
+import Button from '../../UI/Button';
+import { useSnackbar } from '../../../contexts/snackbarContenxt';
+import axios from 'axios';
+import { API_URL } from '../../../common/constants/environment';
 
 //interfaces
 interface InitialValues {
-  occasion: string;
+  occasion: string | null;
   month: number | null;
   day: number | null;
 }
 
 interface ValidationShema {
-  occasion: string;
+  occasion: string | null;
   month: number | null;
   day: number | null;
 }
 
-interface OccasionProps {
-  occasion: string;
-  month: number;
-  day: number;
-}
-
 const AddOccasionNotification = () => {
-  const [occasion, setOccasion] = useState<OccasionProps[]>([]);
+  const { showSnackbar } = useSnackbar();
 
   const initialValues: InitialValues = {
     occasion: '',
@@ -33,13 +29,33 @@ const AddOccasionNotification = () => {
   };
 
   const validationShema: Yup.ObjectSchema<ValidationShema> = Yup.object({
-    occasion: Yup.string().trim().required('Mező kitöltése kötelező!'),
+    occasion: Yup.string().trim().min(1).required('Mező kitöltése kötelező!'),
     month: Yup.number().min(1).max(12).required('Kérem adja meg a hónapot!'),
     day: Yup.number().min(1).max(31).required('Kérem adja meg a napot!'),
   });
 
-  const handleAddOccasion = () => {
-    console.log('Add Occasion');
+  const handleAddOccasion = async (
+    values: InitialValues,
+    { setSubmitting, resetForm }: FormikHelpers<InitialValues>
+  ) => {
+    console.log('Add Occasion'); // pityi
+    try {
+      const response = await axios.post(`${API_URL}/notifications/add/occasion`, values, { withCredentials: true });
+      if (response.status >= 200 && response.status < 300) {
+        showSnackbar({ message: response.data.message, severity: 'success' });
+      }
+    } catch (error) {
+      console.error('error: ', error);
+      if (axios.isAxiosError(error)) {
+        showSnackbar({
+          message: error.response?.data.message,
+          severity: 'error',
+        });
+      }
+    } finally {
+      setSubmitting(false);
+      resetForm();
+    }
   };
 
   return (
@@ -51,7 +67,7 @@ const AddOccasionNotification = () => {
           validationSchema={validationShema}
           onSubmit={handleAddOccasion}
         >
-          {({ values, errors, touched, handleChange, handleSubmit, handleBlur, isSubmitting }) => (
+          {({ values, errors, dirty, handleChange, handleSubmit, handleBlur, isSubmitting }) => (
             <div className="add-occasion-notification__form-container">
               <Form className="add-occasion-notification__form" onSubmit={handleSubmit}>
                 <div className="add-occasion-notification__date-group">
@@ -104,7 +120,7 @@ const AddOccasionNotification = () => {
                   <Field
                     className="add-occasion-notification__input-name"
                     id="occasion"
-                    name="ocassion"
+                    name="occasion"
                     type="text"
                     value={values.occasion}
                     onChange={handleChange}
@@ -119,12 +135,13 @@ const AddOccasionNotification = () => {
                 </div>
 
                 {/* Button */}
+
                 <div className="login-page__button-container">
                   <Button
                     label="Hozzáad"
                     type="submit"
                     className="add-occasion-notification__button"
-                    disabled={isSubmitting || Boolean(Object.keys(touched)) || Boolean(Object.keys(errors)?.length)}
+                    disabled={isSubmitting || !dirty || Boolean(Object.keys(errors)?.length)}
                   />
                 </div>
               </Form>
