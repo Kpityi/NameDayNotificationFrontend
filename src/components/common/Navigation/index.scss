@@ -7,13 +7,15 @@
   color: $body-bg;
 
   @media (max-width: $breakpoint-sm) {
-    width: 150px;
+    padding: 0 0 0.3rem 2rem;
+    text-align: left;
   }
 
   &__links {
     padding: 0.3rem;
     display: flex;
     justify-content: space-between;
+    z-index: 100;
 
     @media (max-width: $breakpoint-sm) {
       display: block;

@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { API_BASE_URL } from '../../common/constants/environment';
+import { API_BASE_URL, FACEBOOK_APP_ID } from '../../common/constants/environment';
 import './index.scss';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
@@ -7,7 +7,7 @@ import { faFacebook, faFacebookMessenger } from '@fortawesome/free-brands-svg-ic
 import * as Yup from 'yup';
 import { ErrorMessage, Field, Form, Formik, FormikHelpers } from 'formik';
 import Button from '../UI/Button';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import classNames from 'classnames';
 
 interface Postcard {
@@ -28,12 +28,30 @@ interface initialValues {
 }
 
 const Postcard: React.FC<PostCardProps> = ({ postcard, handleSend }) => {
+  const deviceType = useMemo(() => {
+    const userAgent = navigator.userAgent;
+    if (/Mobile|Android|iPhone|iPad|iPod/.test(userAgent)) {
+      return 'mobile';
+    } else {
+      return 'desktop';
+    }
+  }, []);
+  console.log(deviceType);
+
   const initialValues = { email: '', name: '', message: '' };
   const validationShema = Yup.object({
-    email: Yup.string().trim().email('Kérem Valós email címet adjon meg!').required('Mező kitöltése kötelező'),
-    name: Yup.string().trim().required('Kérem adja meg nevét!'),
+    email: Yup.string()
+      .trim()
+      .email('Kérem valós email címet adjon meg!')
+      .required('Mező kitöltése kötelező')
+      .max(50, 'Az email maximum 50 karakter lehet!'),
+    name: Yup.string().trim().required('Kérem adja meg nevét!').max(50, 'A név maximum 50 karakter lehet!'),
+    message: Yup.string().trim().max(200, 'Az üzenet maximum 200 karakter lehet!'),
   });
   const [showEmailBox, setShowEmailBox] = useState(false);
+  //const postcardUrl = `${API_BASE_URL}/${postcard.url}`;
+  const postcardUrl = `https://backend.namedaynotification.kerteszistvan.com/postcards/birthday/bd001.png`;
+  const REDIRECT_URI = 'https://namedaynotification.kerteszistvan.com/postcards';
 
   const createClassname = classNames('postcard__form-container', showEmailBox && '-show');
   const handleSendEmail = async (values: initialValues, { resetForm, setSubmitting }: FormikHelpers<initialValues>) => {
@@ -50,6 +68,7 @@ const Postcard: React.FC<PostCardProps> = ({ postcard, handleSend }) => {
       </div>
       <div className="postcard__buttons">
         <span className="postcard__buttons-text">Küldés: </span>
+        {/* Mail */}
         <FontAwesomeIcon
           icon={faEnvelope}
           className="postcard__icon -mail"
@@ -57,12 +76,30 @@ const Postcard: React.FC<PostCardProps> = ({ postcard, handleSend }) => {
             setShowEmailBox(!showEmailBox);
           }}
         />
-        <Link to={`https://www.facebook.com/sharer/sharer.php?u=${API_BASE_URL}/${postcard.url}`} target="_blank">
-          <FontAwesomeIcon icon={faFacebook} className="postcard__icon -facebook" />
-        </Link>
-        <Link to={`https://www.facebook.com/dialog/share?link=${API_BASE_URL}/${postcard.url}`} target="_blank">
-          <FontAwesomeIcon icon={faFacebookMessenger} className="postcard__icon -messenger" />
-        </Link>
+        {/* Facebook */}
+        <span className="fb-share-button" data-href={postcardUrl} data-layout="" data-size="">
+          <Link
+            to={`https://www.facebook.com/sharer/sharer.php?u=${postcardUrl}&amp;src=sdkpreparse`}
+            target="_blank"
+            className="fb-xfbml-parse-ignore"
+          >
+            <FontAwesomeIcon icon={faFacebook} className="postcard__icon -facebook" />
+          </Link>
+        </span>
+        {/* Messenger */}
+        <span className="fb-share-button" data-href={postcardUrl} data-layout="" data-size="">
+          {deviceType === 'mobile' ? (
+            <Link to={`fb-messenger://share/?link= ${postcardUrl}`} target="_blank">
+              <FontAwesomeIcon icon={faFacebookMessenger} className="postcard__icon -messenger" />
+            </Link>
+          ) : (
+            <Link
+              to={`https://www.facebook.com/dialog/send?app_id=${FACEBOOK_APP_ID}&link=${postcardUrl}&redirect_uri=${REDIRECT_URI}`}
+            >
+              <FontAwesomeIcon icon={faFacebookMessenger} className="postcard__icon -messenger" />
+            </Link>
+          )}
+        </span>
       </div>
       <div className={createClassname}>
         <Formik
@@ -88,7 +125,7 @@ const Postcard: React.FC<PostCardProps> = ({ postcard, handleSend }) => {
                   onChange={handleChange}
                 />
                 <div className="postcard__error-message-container">
-                  <ErrorMessage name="email" render={(msg) => <div className="postcard__error-message">{msg}</div>} />
+                  <ErrorMessage name="name" render={(msg) => <div className="postcard__error-message">{msg}</div>} />
                 </div>
               </div>
               <div className="postcard__form-group">
