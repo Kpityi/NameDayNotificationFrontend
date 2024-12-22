@@ -36,7 +36,6 @@ const Postcard: React.FC<PostCardProps> = ({ postcard, handleSend }) => {
       return 'desktop';
     }
   }, []);
-  console.log(deviceType);
 
   const initialValues = { email: '', name: '', message: '' };
   const validationShema = Yup.object({
@@ -49,7 +48,7 @@ const Postcard: React.FC<PostCardProps> = ({ postcard, handleSend }) => {
     message: Yup.string().trim().max(200, 'Az üzenet maximum 200 karakter lehet!'),
   });
   const [showEmailBox, setShowEmailBox] = useState(false);
-  const postcardUrl = `${API_BASE_URL}/${postcard.url}`;
+
   const REDIRECT_URI = 'https://namedaynotification.kerteszistvan.com/postcards';
 
   const createClassname = classNames('postcard__form-container', showEmailBox && '-show');
@@ -76,9 +75,14 @@ const Postcard: React.FC<PostCardProps> = ({ postcard, handleSend }) => {
           }}
         />
         {/* Facebook */}
-        <span className="fb-share-button" data-href={postcardUrl} data-layout="" data-size="">
+        <span
+          className="fb-share-button"
+          data-href={`https://backend.namedaynotification.kerteszistvan.com/${postcard.url}`}
+          data-layout=""
+          data-size=""
+        >
           <Link
-            to={`https://www.facebook.com/sharer/sharer.php?u=${postcardUrl}&amp;src=sdkpreparse`}
+            to={`https://www.facebook.com/sharer/sharer.php?u=https://backend.namedaynotification.kerteszistvan.com/${postcard.url}&amp;src=sdkpreparse`}
             target="_blank"
             className="fb-xfbml-parse-ignore"
           >
@@ -86,14 +90,22 @@ const Postcard: React.FC<PostCardProps> = ({ postcard, handleSend }) => {
           </Link>
         </span>
         {/* Messenger */}
-        <span className="fb-share-button" data-href={postcardUrl} data-layout="" data-size="">
+        <span
+          className="fb-share-button"
+          data-href={`https://backend.namedaynotification.kerteszistvan.com/${postcard.url}`}
+          data-layout=""
+          data-size=""
+        >
           {deviceType === 'mobile' ? (
-            <Link to={`fb-messenger://share/?link=${postcardUrl}&app_id=${FACEBOOK_APP_ID}`} target="_blank">
+            <Link
+              to={`fb-messenger://share/?link=https://backend.namedaynotification.kerteszistvan.com/${postcard.url}&app_id=${FACEBOOK_APP_ID}`}
+              target="_blank"
+            >
               <FontAwesomeIcon icon={faFacebookMessenger} className="postcard__icon -messenger" />
             </Link>
           ) : (
             <Link
-              to={`https://www.facebook.com/dialog/send?app_id=${FACEBOOK_APP_ID}&link=${postcardUrl}&redirect_uri=${REDIRECT_URI}`}
+              to={`https://www.facebook.com/dialog/send?app_id=${FACEBOOK_APP_ID}&link=https://backend.namedaynotification.kerteszistvan.com/${postcard.url}&redirect_uri=${REDIRECT_URI}`}
             >
               <FontAwesomeIcon icon={faFacebookMessenger} className="postcard__icon -messenger" />
             </Link>
