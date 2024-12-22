@@ -1,0 +1,86 @@
+@import '../../styles/colors';
+@import '../../styles/breakpoints';
+
+.postcard {
+  &__container {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    background-color: $color-white;
+    border-radius: 12% 12% 5% 5%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+  }
+
+  &__image {
+    width: 95%;
+    margin-top: 0.5rem;
+    border-radius: 12% 12% 5% 5%;
+  }
+
+  &__buttons {
+    padding: 1.5rem 1.2rem;
+    display: flex;
+    justify-content: left;
+    gap: 1rem;
+  }
+
+  &__icon {
+    cursor: pointer;
+    &.-mail {
+      color: $body-color;
+    }
+
+    &.-facebook {
+      color: #0866ff;
+    }
+    &.-messenger {
+      color: #0866ff;
+    }
+  }
+  &__error-message {
+    color: $color-red;
+    font-size: 0.8rem;
+
+    &-container {
+      min-height: 1rem;
+      line-height: normal;
+    }
+  }
+  &__form-container {
+    line-height: normal;
+    background-color: #f9f9f9;
+    width: 100%;
+    overflow: hidden;
+    position: absolute;
+    bottom: -80px;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid #ccc;
+    transition: transform 0.4s ease-in-out;
+    transform: translateY(100%);
+    &.-show {
+      transform: translateY(0);
+      bottom: 0;
+    }
+  }
+  &__input {
+    width: 90%;
+    padding: 0.2rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 0.9rem;
+
+    &:focus {
+      border-color: #6a11cb;
+      outline: none;
+    }
+  }
+  &__button {
+    margin-top: 0.4rem;
+    transform: scale(85%);
+  }
+}

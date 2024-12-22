@@ -1,0 +1,21 @@
+@import '../../../styles/colors';
+@import '../../../styles/breakpoints';
+
+.postcards-page {
+  &__type {
+    font-size: 1.5 rem;
+    font-weight: 700;
+    margin: 2rem 1rem 1rem 1rem;
+    text-align: left;
+  }
+  &__wrapper {
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  &__hr {
+    filter: opacity(40%);
+  }
+}

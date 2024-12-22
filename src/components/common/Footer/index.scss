@@ -1,0 +1,14 @@
+@import '../../../styles/colors';
+@import '../../../styles/breakpoints';
+
+.footer {
+  background-color: $body-color;
+  color: $body-bg;
+  min-height: 50px;
+  padding: 1rem;
+
+  &__logo {
+    width: 20px;
+    margin: 0 0.5rem;
+  }
+}

@@ -64,7 +64,7 @@ const LoginPage = () => {
       const response = await axios.post(`${API_URL}/auth/login`, values, { withCredentials: true });
       console.log(response); //pityi
       if (response.status >= 200 && response.status < 300) {
-        console.log(response.data);
+        console.log(response.data); //pityi
         showSnackbar({
           message: 'sikeres belejelentkezés',
           severity: 'success',
