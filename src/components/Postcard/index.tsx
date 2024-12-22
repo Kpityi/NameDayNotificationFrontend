@@ -49,8 +49,7 @@ const Postcard: React.FC<PostCardProps> = ({ postcard, handleSend }) => {
     message: Yup.string().trim().max(200, 'Az üzenet maximum 200 karakter lehet!'),
   });
   const [showEmailBox, setShowEmailBox] = useState(false);
-  //const postcardUrl = `${API_BASE_URL}/${postcard.url}`;
-  const postcardUrl = `https://backend.namedaynotification.kerteszistvan.com/postcards/birthday/bd001.png`;
+  const postcardUrl = `${API_BASE_URL}/${postcard.url}`;
   const REDIRECT_URI = 'https://namedaynotification.kerteszistvan.com/postcards';
 
   const createClassname = classNames('postcard__form-container', showEmailBox && '-show');
@@ -89,7 +88,7 @@ const Postcard: React.FC<PostCardProps> = ({ postcard, handleSend }) => {
         {/* Messenger */}
         <span className="fb-share-button" data-href={postcardUrl} data-layout="" data-size="">
           {deviceType === 'mobile' ? (
-            <Link to={`fb-messenger://share/?link= ${postcardUrl}`} target="_blank">
+            <Link to={`fb-messenger://share/?link=${postcardUrl}&app_id=${FACEBOOK_APP_ID}`} target="_blank">
               <FontAwesomeIcon icon={faFacebookMessenger} className="postcard__icon -messenger" />
             </Link>
           ) : (
