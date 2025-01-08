@@ -82,7 +82,7 @@ const Postcard: React.FC<PostCardProps> = ({ postcard, handleSend }) => {
           data-size=""
         >
           <Link
-            to={`https://www.facebook.com/sharer/sharer.php?u=https://backend.namedaynotification.kerteszistvan.com/${postcard.url}&amp;src=sdkpreparse`}
+            to={`https://www.facebook.com/sharer/sharer.php?u=https://backend.namedaynotification.kerteszistvan.com/${postcard.url}&app_id=${FACEBOOK_APP_ID}&amp;src=sdkpreparse`}
             target="_blank"
             className="fb-xfbml-parse-ignore"
           >

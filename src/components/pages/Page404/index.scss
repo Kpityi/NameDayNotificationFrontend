@@ -1,0 +1,15 @@
+.page-404 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  &__icon {
+    font-size: 100px;
+    margin: 1rem 1.5rem;
+  }
+  &__text {
+    font-size: 3rem;
+    margin: 1rem 1.5rem;
+  }
+}

@@ -45,13 +45,6 @@ function App(): JSX.Element {
             <Route path={`${PATHS.friends}/${PATHS.create}`} element={<PrivateRoute element={<AddFriendsPage />} />} />
             <Route path="*" element={<Page404 />} />
           </Routes>
-          <div id="fb-root"></div>
-          <script
-            async
-            defer
-            crossOrigin="anonymous"
-            src="https://connect.facebook.net/hu_HU/sdk.js#xfbml=1&version=v21.0&appId=632934529077400"
-          ></script>
         </main>
         <Footer />
       </Router>
